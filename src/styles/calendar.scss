@@ -1,43 +1,42 @@
-@each $day, $value in $daysWeek {
-  .calendar-#{$day} div:first-child {
-    margin-left: calc(14.29% * #{$value});
-  }
-}
-
-@for $i from 1 through 31 {
-  .calendar div:nth-child(#{$i}):before {
-    display: block;
-    content: "#{$i}";
-    color: black;
-    text-align: center;
-    padding-top: #{$fontSize};
-  }
-  .calendar div:nth-child(#{$i}):hover {
-    margin-top: -20px;
-    cursor: pointer;
-    background-color: pink;
-    transition-duration: 500ms;
-    transition-property: margin-top, background-color;
-  }
-  .calendar-#{$i} div:nth-child(-n+#{$i}) {
-    visibility: visible;
-  }
-}
-
 .calendar {
   visibility: hidden;
   display: flex;
   flex-wrap: wrap;
   max-width: ($widthCard+$marginCard)*7 + $marginCard;
   margin: 100px auto;
-}
 
-.calendar div {
-  flex-basis: $widthCard;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
-  background-color: #eee;
-  border: 1px solid black;
-  margin: $marginCard $marginCard 0 0;
+  & div {
+    flex-basis: $widthCard;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: #eee;
+    border: 1px solid black;
+    margin: $marginCard $marginCard 0 0;
+  }
+  @each $day, $value in $daysWeek {
+    &-#{$day} div:first-child {
+      margin-left: calc(14.29% * #{$value});
+    }
+  }
+
+  @for $i from 1 through 31 {
+    & div:nth-child(#{$i}):before {
+      display: block;
+      content: "#{$i}";
+      color: black;
+      text-align: center;
+      padding-top: #{$fontSize};
+    }
+    & div:nth-child(#{$i}):hover {
+      margin-top: -20px;
+      cursor: pointer;
+      background-color: pink;
+      transition-duration: 500ms;
+      transition-property: margin-top, background-color;
+    }
+    &-#{$i} div:nth-child(-n+#{$i}) {
+      visibility: visible;
+    }
+  }
 }
