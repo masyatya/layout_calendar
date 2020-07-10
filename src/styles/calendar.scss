@@ -16,7 +16,7 @@
   }
   @each $day, $value in $daysWeek {
     &-#{$day} div:first-child {
-      margin-left: calc(14.29% * #{$value});
+      margin-left: calc(#{$widthCard} * #{$value} + #{$marginCard});
     }
   }
 
