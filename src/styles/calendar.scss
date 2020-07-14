@@ -1,5 +1,4 @@
 .calendar {
-  visibility: hidden;
   display: flex;
   flex-wrap: wrap;
   max-width: ($widthCard+$marginCard)*7 + $marginCard;
@@ -16,7 +15,7 @@
   }
   @each $day, $value in $daysWeek {
     &-#{$day} div:first-child {
-      margin-left: calc(#{$widthCard} * #{$value} + #{$marginCard});
+      margin-left: calc(#{$widthCard} * #{$value} + #{$marginCard} * #{$value});
     }
   }
 
@@ -35,8 +34,13 @@
       transition-duration: 500ms;
       transition-property: margin-top, background-color;
     }
-    &-#{$i} div:nth-child(-n+#{$i}) {
-      visibility: visible;
+  }
+
+  @for $i from 28 through 31 {
+    &-#{$i} {
+      div:nth-child(#{$i}) ~ div {
+        display: none;
+      }
     }
   }
 }
